@@ -1,0 +1,50 @@
+CREATE DATABASE PrinterAccountingDb;
+
+use PrinterAccountingDb;
+
+CREATE TABLE Branches
+(
+	Id INT PRIMARY KEY IDENTITY,
+	Name NVARCHAR(50) NOT NULL,
+	Location NVARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Employees
+(
+	Id INT PRIMARY KEY IDENTITY,
+	BranchId INT NOT NULL,
+	Name NVARCHAR(50) NOT NULL,
+	FOREIGN KEY (BranchId) REFERENCES Branches(Id)
+);
+
+CREATE TABLE Devices
+(
+	Id INT PRIMARY KEY IDENTITY,
+	Name NVARCHAR(50) NOT NULL,
+	ConnectionType NVARCHAR(30) NOT NULL,
+	MacAddress CHAR(12) NULL,
+);
+
+CREATE TABLE Installations
+(
+	Id INT PRIMARY KEY IDENTITY,
+	Name NVARCHAR(50) NOT NULL,
+	BranchId INT NOT NULL,
+	SerialNumber INT NOT NULL,
+	IsDefault BIT NOT NULL,
+	DeviceId INT NOT NULL,
+	FOREIGN KEY (BranchId) REFERENCES Branches(Id),
+	FOREIGN KEY (DeviceId) REFERENCES Devices(Id)
+);
+
+CREATE TABLE PrintTasks
+(
+	Id INT PRIMARY KEY IDENTITY,
+	Name NVARCHAR(50) NOT NULL,
+	EmployeeId INT NOT NULL,
+	InstallationId INT NOT NULL,
+	PagesCount INT NOT NULL,
+	IsSuccess BIT NOT NULL,
+	FOREIGN KEY (InstallationId) REFERENCES Installations(Id),
+	FOREIGN KEY (EmployeeId) REFERENCES Employees(Id)
+);

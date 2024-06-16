@@ -32,7 +32,7 @@ VALUES
     (N'Дворец', @BranchId_1, 1, 1, @DeviceId_1),
     (N'Конюшни', @BranchId_1, 2, 0, @DeviceId_2),
     (N'Оружейная', @BranchId_1, 3, 0, @DeviceId_2),
-    (N'Кратер', @BranchId_3, 4, 0, @DeviceId_3),
+    (N'Кратер', @BranchId_3, 4, 1, @DeviceId_3),
     (N'Избушка', @BranchId_2, 3, 0, @DeviceId_2),
     (N'Топи', @BranchId_2, 2, 1, @DeviceId_1);
 

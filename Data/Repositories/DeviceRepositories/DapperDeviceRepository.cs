@@ -33,4 +33,12 @@ public class DapperDeviceRepository : IDeviceRepository
 
         return await connection.QueryAsync<Device>(sql);
     }
+
+    public async Task<bool> ExistsAsync(int deviceId)
+    {
+        using var connection = _sqlConnectionFactory.CreateConnection();
+        return await connection.ExecuteScalarAsync<bool>(
+            "SELECT COUNT(1) FROM Devices WHERE Id = @DeviceId",
+            new { DeviceId = deviceId });
+    }
 }

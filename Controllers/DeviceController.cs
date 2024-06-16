@@ -16,8 +16,10 @@ public class DeviceController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<Device>> GetDevices([FromQuery] string? connectionType)
+    public async Task<IActionResult> GetDevices([FromQuery] string? connectionType)
     {
-        return await _deviceService.GetAllDevicesAsync(connectionType);
+        var devices = await _deviceService.GetAllDevicesAsync(connectionType);
+
+        return Ok(devices);
     }
 }

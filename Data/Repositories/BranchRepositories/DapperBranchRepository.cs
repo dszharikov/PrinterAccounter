@@ -1,4 +1,6 @@
 using Dapper;
+using Microsoft.Data.SqlClient;
+using PrinterAccounter.Exceptions;
 using PrinterAccounter.Models;
 using PrinterAccounter.Services;
 
@@ -23,7 +25,16 @@ public class DapperBranchRepository : IBranchRepository
                 Location
             FROM
                 Branches";
-        
+
         return await connection.QueryAsync<Branch>(sql);
+    }
+
+    public async Task<bool> ExistsAsync(int branchId)
+    {
+        using var connection = _sqlConnectionFactory.CreateConnection();
+        return await connection.ExecuteScalarAsync<bool>(
+            "SELECT COUNT(1) FROM Branches WHERE Id = @BranchId",
+            new { BranchId = branchId });
+
     }
 }

@@ -13,6 +13,14 @@ public static class DataAccessExtensions
             return new SqlConnectionFactory(connectionString);
         });
 
+        // добавление кэширования
+        services.AddStackExchangeRedisCache(options =>
+        {
+            string redisConnection = configuration.GetConnectionString("RedisConnection") ??
+                                     throw new InvalidOperationException("Redis connection string is missing");
+            options.Configuration = redisConnection;
+        });
+
         return services;
     }
 }

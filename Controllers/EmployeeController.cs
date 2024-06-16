@@ -16,8 +16,10 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<Employee>> GetEmployees()
+    public async Task<IActionResult> GetEmployees()
     {
-        return await _employeeService.GetEmployeesAsync();
+        var employees = await _employeeService.GetEmployeesAsync();
+
+        return Ok(employees);
     }
 }

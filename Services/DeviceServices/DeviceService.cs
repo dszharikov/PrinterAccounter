@@ -15,4 +15,9 @@ public class DeviceService : IDeviceService
     {
         return await _deviceRepository.GetAllDevices(connectionType);
     }
+
+    public async Task<bool> ExistsAsync(int deviceId)
+    {
+        return await _deviceRepository.ExistsAsync(deviceId);
+    }
 }

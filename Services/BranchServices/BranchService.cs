@@ -15,4 +15,11 @@ public class BranchService : IBranchService
     {
         return await _branchRepository.GetAllBranches();
     }
+
+    public async Task<bool> ExistsAsync(int branchId)
+    {
+        var exists = await _branchRepository.ExistsAsync(branchId);
+
+        return exists;
+    }
 }

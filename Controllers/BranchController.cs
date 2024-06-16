@@ -16,8 +16,9 @@ public class BranchController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<Branch>> GetBranches()
+    public async Task<IActionResult> GetBranches()
     {
-        return await _branchService.GetAllBranchesAsync();
+        var branches = await _branchService.GetAllBranchesAsync();
+        return Ok(branches);
     }
 }

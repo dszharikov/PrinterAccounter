@@ -85,14 +85,8 @@ public class InstallationService : IInstallationService
 
     public async Task<Installation> GetInstallationByIdAsync(int id)
     {
-        bool exists = await _installationRepository.ExistsAsync(id);
-
-        if (!exists)
-        {
-            throw new NotFoundException("Installation with specified id was not found");
-        }
-
         var installation = await _installationRepository.GetInstallationByIdAsync(id);
+        
         return installation;
     }
 
@@ -107,5 +101,19 @@ public class InstallationService : IInstallationService
 
         var result = await _installationRepository.DeleteInstallationAsync(id);
         return result;
+    }
+
+    public async Task<Installation> GetDefaultInstallationByBranchAsync(int branchId)
+    {
+        var installation = await _installationRepository.GetDefaultInstallationByBranchAsync(branchId);
+
+        return installation;
+    }
+
+    public async Task<Installation> GetInstallationByBranchAndSerialNumberAsync(int branchId, int serialNumber)
+    {
+        var installation = await _installationRepository.GetInstallationByBranchAndSerialNumberAsync(branchId, serialNumber);
+
+        return installation;
     }
 }

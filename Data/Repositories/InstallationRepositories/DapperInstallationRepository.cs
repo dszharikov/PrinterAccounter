@@ -98,7 +98,13 @@ public class DapperInstallationRepository : IInstallationRepository
                 WHERE
                     Id = @Id";
 
-        var installation = await connection.QuerySingleAsync<Installation>(sql, new { Id = id });
+        var installation = await connection.QueryFirstOrDefaultAsync<Installation>(sql, new { Id = id });
+
+        if (installation is null)
+        {
+            throw new NotFoundException("Installation with specified id was not found");
+        }
+
         return installation;
     }
 
@@ -191,5 +197,49 @@ public class DapperInstallationRepository : IInstallationRepository
 
         var serializedInstallations = JsonSerializer.Serialize(installations);
         await _cache.SetStringAsync(_installationCacheKey, serializedInstallations, options);
+    }
+
+    public async Task<Installation> GetDefaultInstallationByBranchAsync(int branchId)
+    {
+        using var connection = _sqlConnectionFactory.CreateConnection();
+
+        var sql = @"
+                SELECT * 
+                FROM 
+                    Installations 
+                WHERE
+                    BranchId = @BranchId
+                    AND IsDefault = 1";
+
+        var installation = await connection.QueryFirstOrDefaultAsync<Installation>(sql, new { BranchId = branchId });
+
+        if (installation is null)
+        {
+            throw new NotFoundException("No installation with specified branch id was found");
+        }
+
+        return installation;
+    }
+
+    public async Task<Installation> GetInstallationByBranchAndSerialNumberAsync(int branchId, int serialNumber)
+    {
+        using var connection = _sqlConnectionFactory.CreateConnection();
+
+        var sql = @"
+                SELECT * 
+                FROM 
+                    Installations 
+                WHERE
+                    BranchId = @BranchId
+                    AND SerialNumber = @SerialNumber";
+        
+        var installation = await connection.QueryFirstOrDefaultAsync<Installation>(sql, new { BranchId = branchId, SerialNumber = serialNumber });
+
+        if (installation is null)
+        {
+            throw new NotFoundException("No installation with specified branch id and serial number was found");
+        }
+        
+        return installation;
     }
 }

@@ -11,6 +11,12 @@ public class EmployeeService : IEmployeeService
     {
         _employeeRepository = employeeRepository;
     }
+
+    public async Task<Employee> GetEmployeeByIdAsync(int employeeId)
+    {
+        return await _employeeRepository.GetEmployeeById(employeeId);
+    }
+
     public async Task<IEnumerable<Employee>> GetEmployeesAsync()
     {
         return await _employeeRepository.GetEmployees();

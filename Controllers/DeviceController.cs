@@ -39,7 +39,11 @@ public class DeviceController : ControllerBase
         var devices = await _deviceService.GetAllDevicesAsync(connectionType);
         if (devices == null || !devices.Any())
         {
-            return NotFound("No devices found.");
+            return NotFound(new ErrorResponseDto
+            {
+                Message = "No devices found.",
+                StatusCode = StatusCodes.Status404NotFound
+            });
         }
         return Ok(devices);
     }

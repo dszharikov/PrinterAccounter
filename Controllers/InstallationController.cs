@@ -44,7 +44,11 @@ public class InstallationController : ControllerBase
     {
         if (installationDto == null)
         {
-            return BadRequest("Installation data is required.");
+            return BadRequest(new ErrorResponseDto
+            {
+                Message = "Installation data is required.",
+                StatusCode = StatusCodes.Status400BadRequest
+            });
         }
 
         var installation = await _installationService.AddInstallationAsync(installationDto);
@@ -73,7 +77,11 @@ public class InstallationController : ControllerBase
         var installations = await _installationService.GetInstallationsAsync(parameters);
         if (installations == null || !installations.Any())
         {
-            return NotFound("No installations found.");
+            return NotFound(new ErrorResponseDto
+            {
+                Message = "No installations found.",
+                StatusCode = StatusCodes.Status404NotFound
+            });
         }
         return Ok(installations);
     }
@@ -96,7 +104,11 @@ public class InstallationController : ControllerBase
         var installation = await _installationService.GetInstallationByIdAsync(id);
         if (installation == null)
         {
-            return NotFound($"Installation with ID {id} not found.");
+            return NotFound(new ErrorResponseDto
+            {
+                Message = $"Installation with ID {id} not found.",
+                StatusCode = StatusCodes.Status404NotFound
+            });
         }
         return Ok(installation);
     }
@@ -118,7 +130,11 @@ public class InstallationController : ControllerBase
         var existing = await _installationService.GetInstallationByIdAsync(id);
         if (existing == null)
         {
-            return NotFound($"Installation with ID {id} not found.");
+            return NotFound(new ErrorResponseDto
+            {
+                Message = $"Installation with ID {id} not found.",
+                StatusCode = StatusCodes.Status404NotFound
+            });
         }
 
         await _installationService.DeleteInstallationAsync(id);

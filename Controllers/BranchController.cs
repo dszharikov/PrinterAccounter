@@ -29,7 +29,11 @@ public class BranchController : ControllerBase
         var branches = await _branchService.GetAllBranchesAsync();
         if (branches == null || !branches.Any())
         {
-            return NotFound("No branches found.");
+            return NotFound(new ErrorResponseDto
+            {
+                Message = "No branches found.",
+                StatusCode = StatusCodes.Status404NotFound
+            });
         }
         return Ok(branches);
     }

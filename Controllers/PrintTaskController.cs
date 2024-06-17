@@ -46,7 +46,11 @@ public class PrintTaskController : ControllerBase
     {
         if (printTaskDto == null || printTaskDto.PagesCount <= 0)
         {
-            return BadRequest("Print task data is invalid or pages count is zero.");
+            return BadRequest(new ErrorResponseDto
+            {
+                Message = "Print task data is invalid or pages count is zero.",
+                StatusCode = StatusCodes.Status400BadRequest
+            });
         }
 
         var printTask = await _printTaskService.AddPrintTaskAsync(printTaskDto);
@@ -79,13 +83,21 @@ public class PrintTaskController : ControllerBase
     {
         if (file == null)
         {
-            return BadRequest("No file was provided.");
+            return BadRequest(new ErrorResponseDto
+            {
+                Message = "No file was provided.",
+                StatusCode = StatusCodes.Status400BadRequest
+            });
         }
 
         var fileExtension = Path.GetExtension(file.FileName);
         if (fileExtension?.ToLower() != ".csv")
         {
-            return BadRequest("Invalid file format. Only .csv files are allowed.");
+            return BadRequest(new ErrorResponseDto
+            {
+                Message = "Invalid file format. Only .csv files are allowed.",
+                StatusCode = StatusCodes.Status400BadRequest
+            });
         }
 
         byte[] fileContent;
@@ -98,7 +110,11 @@ public class PrintTaskController : ControllerBase
         var printTasksDto = _csvParser.ParseTasksCsv(fileContent);
         if (printTasksDto == null || !printTasksDto.Any())
         {
-            return UnprocessableEntity("CSV file content is invalid or empty.");
+            return UnprocessableEntity(new ErrorResponseDto
+            {
+                Message = "CSV file content is invalid or empty.",
+                StatusCode = StatusCodes.Status422UnprocessableEntity
+            });
         }
 
         var rowsAffected = await _printTaskService.AddMultipleTasksAsync(printTasksDto);
@@ -125,7 +141,11 @@ public class PrintTaskController : ControllerBase
         var printTask = await _printTaskService.GetPrintTaskByIdAsync(id);
         if (printTask == null)
         {
-            return NotFound($"Print task with ID {id} not found.");
+            return NotFound(new ErrorResponseDto
+            {
+                Message = $"Print task with ID {id} not found.",
+                StatusCode = StatusCodes.Status404NotFound
+            });
         }
         return Ok(printTask);
     }

@@ -29,7 +29,11 @@ public class EmployeeController : ControllerBase
         var employees = await _employeeService.GetEmployeesAsync();
         if (employees == null || !employees.Any())
         {
-            return NotFound("No employees found.");
+            return NotFound(new ErrorResponseDto
+            {
+                Message = "No employees found.",
+                StatusCode = StatusCodes.Status404NotFound
+            });
         }
         return Ok(employees);
     }

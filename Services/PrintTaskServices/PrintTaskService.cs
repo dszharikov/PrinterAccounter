@@ -1,5 +1,5 @@
 using PrinterAccounter.Data.Repositories.PrintTaskRepositories;
-using PrinterAccounter.DTOs;
+using PrinterAccounter.DTOs.Input;
 using PrinterAccounter.Exceptions;
 using PrinterAccounter.Models;
 using PrinterAccounter.Services.EmployeeServices;
@@ -165,4 +165,10 @@ public class PrintTaskService : IPrintTaskService
         return await _printTaskRepository.AddMultiplePrintTasksAsync(printTasks);
     }
 
+    public async Task<PrintTask> GetPrintTaskByIdAsync(int printTaskId)
+    {
+        var printTask = await _printTaskRepository.GetPrintTaskByIdAsync(printTaskId);
+
+        return printTask;
+    }
 }

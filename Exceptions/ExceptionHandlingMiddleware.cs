@@ -1,4 +1,5 @@
 using Microsoft.Data.SqlClient;
+using PrinterAccounter.DTOs.Output;
 using PrinterAccounter.Exceptions;
 using System.Net;
 using System.Text.Json;
@@ -57,9 +58,10 @@ public class ExceptionHandlingMiddleware
                 break;
         }
 
-        var response = new
+        var response = new ErrorResponseDto
         {
-            message
+            StatusCode = (int)status,
+            Message = message
         };
 
         context.Response.ContentType = "application/json";

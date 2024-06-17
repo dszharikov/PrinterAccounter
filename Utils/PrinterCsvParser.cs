@@ -2,7 +2,7 @@ using System.Globalization;
 using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
-using PrinterAccounter.DTOs;
+using PrinterAccounter.DTOs.Input;
 using PrinterAccounter.Exceptions;
 
 namespace PrinterAccounter.Utils;

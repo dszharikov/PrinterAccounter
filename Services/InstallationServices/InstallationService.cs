@@ -1,5 +1,5 @@
 using PrinterAccounter.Data.Repositories.InstallationRepositories;
-using PrinterAccounter.DTOs;
+using PrinterAccounter.DTOs.Input;
 using PrinterAccounter.Exceptions;
 using PrinterAccounter.Models;
 using PrinterAccounter.Services.BranchServices;

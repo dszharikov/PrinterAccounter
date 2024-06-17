@@ -1,4 +1,4 @@
-using PrinterAccounter.DTOs;
+using PrinterAccounter.DTOs.Input;
 using PrinterAccounter.Models;
 
 namespace PrinterAccounter.Data.Repositories.InstallationRepositories;

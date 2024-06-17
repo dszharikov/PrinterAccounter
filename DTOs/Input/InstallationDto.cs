@@ -1,4 +1,4 @@
-namespace PrinterAccounter.DTOs;
+namespace PrinterAccounter.DTOs.Input;
 
 public class InstallationDto
 {

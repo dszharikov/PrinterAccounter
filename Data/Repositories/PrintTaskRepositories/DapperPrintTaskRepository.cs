@@ -1,4 +1,5 @@
 using Dapper;
+using PrinterAccounter.Exceptions;
 using PrinterAccounter.Models;
 using PrinterAccounter.Services;
 
@@ -38,5 +39,24 @@ public class DapperPrintTaskRepository : IPrintTaskRepository
 
         var rowsAffected = await connection.ExecuteAsync(sql, printTasks);
         return rowsAffected;
+    }
+
+    public Task<PrintTask> GetPrintTaskByIdAsync(int printTaskId)
+    {
+        var sql = @"
+                SELECT Id, Name, EmployeeId, InstallationId, PagesCount, IsSuccess
+                FROM PrintTasks
+                WHERE Id = @printTaskId";
+        
+        using var connection = _sqlConnectionFactory.CreateConnection();
+
+        var printTask = connection.QueryFirstOrDefaultAsync<PrintTask>(sql, new { printTaskId });
+
+        if (printTask is null)
+        {
+            throw new NotFoundException($"Print task with id {printTaskId} was not found");
+        }
+
+        return printTask;
     }
 }

@@ -3,7 +3,7 @@ using System.Text;
 using System.Text.Json;
 using Dapper;
 using Microsoft.Extensions.Caching.Distributed;
-using PrinterAccounter.DTOs;
+using PrinterAccounter.DTOs.Input;
 using PrinterAccounter.Exceptions;
 using PrinterAccounter.Models;
 using PrinterAccounter.Services;

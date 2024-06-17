@@ -14,4 +14,9 @@ namespace PrinterAccounter.Exceptions
     {
         public ValidationException(string message) : base(message) { }
     }
+
+    public class FileValidationException : Exception
+    {
+        public FileValidationException(string message) : base(message) { }
+    }
 }

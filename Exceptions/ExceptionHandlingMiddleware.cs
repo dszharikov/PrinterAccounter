@@ -47,6 +47,10 @@ public class ExceptionHandlingMiddleware
                 status = HttpStatusCode.BadRequest;
                 message = validationException.Message;
                 break;
+            case FileValidationException fileValidationException:
+                status = HttpStatusCode.UnprocessableEntity;
+                message = fileValidationException.Message;
+                break;
             default:
                 status = HttpStatusCode.InternalServerError;
                 message = "An unexpected error occurred.";

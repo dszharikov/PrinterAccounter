@@ -1,11 +1,11 @@
 using PrinterAccounter.Models;
 
-namespace PrinterAccounter.Services.PrintJobServices;
+namespace PrinterAccounter.Services.PrintServices;
 
-public class PrintJobSimulatorService : IPrintJobService
+public class PrintSimulatorService : IPrintService
 {
     private readonly Random _random;
-    public PrintJobSimulatorService()
+    public PrintSimulatorService()
     {
         _random = new Random();
     }

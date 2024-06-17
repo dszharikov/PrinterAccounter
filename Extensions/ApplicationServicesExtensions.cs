@@ -2,8 +2,9 @@ using PrinterAccounter.Services.BranchServices;
 using PrinterAccounter.Services.DeviceServices;
 using PrinterAccounter.Services.EmployeeServices;
 using PrinterAccounter.Services.InstallationServices;
-using PrinterAccounter.Services.PrintJobServices;
+using PrinterAccounter.Services.PrintServices;
 using PrinterAccounter.Services.PrintTaskServices;
+using PrinterAccounter.Utils;
 
 namespace PrinterAccounter.Extensions;
 
@@ -16,7 +17,9 @@ public static class ApplicationServicesExtensions
         services.AddScoped<IBranchService, BranchService>();
         services.AddScoped<IInstallationService, InstallationService>();
         services.AddScoped<IPrintTaskService, PrintTaskService>();
-        services.AddScoped<IPrintJobService, PrintJobSimulatorService>();
+        services.AddScoped<IPrintService, PrintSimulatorService>();
+
+        services.AddScoped<PrinterCsvParser>();
 
         return services;
     }

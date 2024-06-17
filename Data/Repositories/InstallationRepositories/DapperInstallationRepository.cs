@@ -17,7 +17,8 @@ public class DapperInstallationRepository : IInstallationRepository
     private const string _installationCacheKey = "Installation";
     private const double _cacheExpirationMinutes = 105;
 
-    public DapperInstallationRepository(SqlConnectionFactory sqlConnectionFactory, IDistributedCache cache)
+    public DapperInstallationRepository(SqlConnectionFactory sqlConnectionFactory,
+                                        IDistributedCache cache)
     {
         _sqlConnectionFactory = sqlConnectionFactory;
         _cache = cache;
@@ -53,11 +54,10 @@ public class DapperInstallationRepository : IInstallationRepository
         var cachedInstallations = await GetInstallationsFromCache();
         if (cachedInstallations is not null)
         {
-            var cachedExists = cachedInstallations.Any(i => i.BranchId == branchId && i.SerialNumber == serialNumber);
+            var cachedExists = cachedInstallations.Any(i => i.BranchId == branchId
+                                                       && i.SerialNumber == serialNumber);
             return cachedExists;
         }
-
-        using var connection = _sqlConnectionFactory.CreateConnection();
 
         string sql = @"
             SELECT
@@ -67,6 +67,8 @@ public class DapperInstallationRepository : IInstallationRepository
             WHERE
                 BranchId = @BranchId
                 AND SerialNumber = @SerialNumber";
+
+        using var connection = _sqlConnectionFactory.CreateConnection();
 
         var dbExists = await connection.ExecuteScalarAsync<bool>(sql,
             new { BranchId = branchId, SerialNumber = serialNumber });
@@ -89,14 +91,14 @@ public class DapperInstallationRepository : IInstallationRepository
             }
         }
 
-        using var connection = _sqlConnectionFactory.CreateConnection();
-
         var sql = @"
                 SELECT * 
                 FROM 
                     Installations 
                 WHERE
                     Id = @Id";
+
+        using var connection = _sqlConnectionFactory.CreateConnection();
 
         var installation = await connection.QueryFirstOrDefaultAsync<Installation>(sql, new { Id = id });
 
@@ -171,9 +173,10 @@ public class DapperInstallationRepository : IInstallationRepository
         }
 
         using var connection = _sqlConnectionFactory.CreateConnection();
+
         return await connection.ExecuteScalarAsync<bool>(
             "SELECT COUNT(1) FROM Installations WHERE Id = @Id",
-            new { Id = id });   
+            new { Id = id });
     }
 
     private async Task<List<Installation>?> GetInstallationsFromCache()
@@ -201,7 +204,6 @@ public class DapperInstallationRepository : IInstallationRepository
 
     public async Task<Installation> GetDefaultInstallationByBranchAsync(int branchId)
     {
-        using var connection = _sqlConnectionFactory.CreateConnection();
 
         var sql = @"
                 SELECT * 
@@ -210,6 +212,8 @@ public class DapperInstallationRepository : IInstallationRepository
                 WHERE
                     BranchId = @BranchId
                     AND IsDefault = 1";
+
+        using var connection = _sqlConnectionFactory.CreateConnection();
 
         var installation = await connection.QueryFirstOrDefaultAsync<Installation>(sql, new { BranchId = branchId });
 
@@ -223,7 +227,6 @@ public class DapperInstallationRepository : IInstallationRepository
 
     public async Task<Installation> GetInstallationByBranchAndSerialNumberAsync(int branchId, int serialNumber)
     {
-        using var connection = _sqlConnectionFactory.CreateConnection();
 
         var sql = @"
                 SELECT * 
@@ -232,14 +235,17 @@ public class DapperInstallationRepository : IInstallationRepository
                 WHERE
                     BranchId = @BranchId
                     AND SerialNumber = @SerialNumber";
-        
-        var installation = await connection.QueryFirstOrDefaultAsync<Installation>(sql, new { BranchId = branchId, SerialNumber = serialNumber });
+
+        using var connection = _sqlConnectionFactory.CreateConnection();
+
+        var installation = await connection.QueryFirstOrDefaultAsync<Installation>(sql,
+            new { BranchId = branchId, SerialNumber = serialNumber });
 
         if (installation is null)
         {
             throw new NotFoundException("No installation with specified branch id and serial number was found");
         }
-        
+
         return installation;
     }
 }

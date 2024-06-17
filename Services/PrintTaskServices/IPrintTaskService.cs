@@ -6,4 +6,5 @@ namespace PrinterAccounter.Services.PrintTaskServices;
 public interface IPrintTaskService
 {
     Task<PrintTask> AddPrintTaskAsync(PrintTaskDto printTask);
+    Task<int> AddMultipleTasksAsync(IEnumerable<PrintTaskDto> printTasks);
 }

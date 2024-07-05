@@ -7,7 +7,7 @@ using PrinterAccounter.Exceptions;
 
 namespace PrinterAccounter.Utils;
 
-public class PrinterCsvParser
+internal class PrinterCsvParser
 {
     public List<PrintTaskDto> ParseTasksCsv(byte[] fileContent)
     {

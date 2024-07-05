@@ -4,7 +4,7 @@ using PrinterAccounter.Services;
 
 namespace PrinterAccounter.Data.Repositories.DeviceRepositories;
 
-public class DapperDeviceRepository : IDeviceRepository
+internal class DapperDeviceRepository : IDeviceRepository
 {
     private readonly SqlConnectionFactory _sqlConnectionFactory;
 

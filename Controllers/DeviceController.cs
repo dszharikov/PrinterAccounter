@@ -8,7 +8,7 @@ namespace PrinterAccounter.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [ProducesErrorResponseType(typeof(ErrorResponseDto))]
-public class DeviceController : ControllerBase
+internal class DeviceController : ControllerBase
 {
     private readonly IDeviceService _deviceService;
 
@@ -34,6 +34,7 @@ public class DeviceController : ControllerBase
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<Device>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetDevices([FromQuery] string? connectionType)
     {
         var devices = await _deviceService.GetAllDevicesAsync(connectionType);

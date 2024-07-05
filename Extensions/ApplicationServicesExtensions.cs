@@ -8,7 +8,7 @@ using PrinterAccounter.Utils;
 
 namespace PrinterAccounter.Extensions;
 
-public static class ApplicationServicesExtensions
+internal static class ApplicationServicesExtensions
 {
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {

@@ -2,7 +2,7 @@ using PrinterAccounter.Services;
 
 namespace PrinterAccounter.Extensions;
 
-public static class DataAccessExtensions
+internal static class DataAccessExtensions
 {
     public static IServiceCollection AddDataAccess(this IServiceCollection services, IConfiguration configuration)
     {

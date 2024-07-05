@@ -3,7 +3,7 @@ using PrinterAccounter.Models;
 
 namespace PrinterAccounter.Services.BranchServices;
 
-public class BranchService : IBranchService
+internal class BranchService : IBranchService
 {
     private readonly IBranchRepository _branchRepository;
 

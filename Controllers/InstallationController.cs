@@ -8,7 +8,7 @@ namespace PrinterAccounter.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [ProducesErrorResponseType(typeof(ErrorResponseDto))]
-public class InstallationController : ControllerBase
+internal class InstallationController : ControllerBase
 {
     private readonly IInstallationService _installationService;
 
@@ -40,6 +40,7 @@ public class InstallationController : ControllerBase
     [ProducesResponseType(typeof(AddModelResultDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> AddInstallation([FromBody] InstallationDto installationDto)
     {
         if (installationDto == null)
@@ -72,6 +73,7 @@ public class InstallationController : ControllerBase
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<InstallationDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetInstallations([FromQuery] InstallationQueryParameters parameters)
     {
         var installations = await _installationService.GetInstallationsAsync(parameters);
@@ -99,6 +101,7 @@ public class InstallationController : ControllerBase
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(InstallationDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetInstallationById(int id)
     {
         var installation = await _installationService.GetInstallationByIdAsync(id);
@@ -125,6 +128,7 @@ public class InstallationController : ControllerBase
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> DeleteInstallation(int id)
     {
         var existing = await _installationService.GetInstallationByIdAsync(id);

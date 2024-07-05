@@ -1,4 +1,4 @@
-using PrinterAccounter.Data.Repositories.InstallationRepositories;
+using PrinterAccounter.Data.Repositories.CachedInstallationRepositories;
 using PrinterAccounter.DTOs.Input;
 using PrinterAccounter.Exceptions;
 using PrinterAccounter.Models;
@@ -7,14 +7,14 @@ using PrinterAccounter.Services.DeviceServices;
 
 namespace PrinterAccounter.Services.InstallationServices;
 
-public class InstallationService : IInstallationService
+internal class InstallationService : IInstallationService
 {
-    private readonly IInstallationRepository _installationRepository;
+    private readonly ICachedInstallationRepository _installationRepository;
     private readonly IBranchService _branchService;
     private readonly IDeviceService _deviceService;
 
     public InstallationService(
-        IInstallationRepository installationRepository,
+        ICachedInstallationRepository installationRepository,
         IBranchService branchService,
         IDeviceService deviceService)
     {

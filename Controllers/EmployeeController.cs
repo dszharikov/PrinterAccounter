@@ -8,7 +8,7 @@ namespace PrinterAccounter.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [ProducesErrorResponseType(typeof(ErrorResponseDto))]
-public class EmployeeController : ControllerBase
+internal class EmployeeController : ControllerBase
 {
     private readonly IEmployeeService _employeeService;
 
@@ -24,6 +24,7 @@ public class EmployeeController : ControllerBase
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<Employee>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetEmployees()
     {
         var employees = await _employeeService.GetEmployeesAsync();

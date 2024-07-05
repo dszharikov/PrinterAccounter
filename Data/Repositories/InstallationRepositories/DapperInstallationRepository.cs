@@ -10,7 +10,7 @@ using PrinterAccounter.Services;
 
 namespace PrinterAccounter.Data.Repositories.InstallationRepositories;
 
-public class DapperInstallationRepository : IInstallationRepository
+internal class DapperInstallationRepository : IInstallationRepository
 {
     private readonly SqlConnectionFactory _sqlConnectionFactory;
     private readonly IDistributedCache _cache;

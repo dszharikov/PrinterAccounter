@@ -3,7 +3,7 @@ using PrinterAccounter.Models;
 
 namespace PrinterAccounter.Services.PrintTaskServices;
 
-public interface IPrintTaskService
+internal interface IPrintTaskService
 {
     Task<PrintTask> AddPrintTaskAsync(PrintTaskDto printTask);
     Task<PrintTask> GetPrintTaskByIdAsync(int printTaskId);

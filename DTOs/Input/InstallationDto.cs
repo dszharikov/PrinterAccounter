@@ -1,6 +1,6 @@
 namespace PrinterAccounter.DTOs.Input;
 
-public class InstallationDto
+internal class InstallationDto
 {
     public string Name { get; set; }
     public int BranchId { get; set; }

@@ -3,7 +3,7 @@ using PrinterAccounter.Models;
 
 namespace PrinterAccounter.Services.EmployeeServices;
 
-public class EmployeeService : IEmployeeService
+internal class EmployeeService : IEmployeeService
 {
     private readonly IEmployeeRepository _employeeRepository;
 

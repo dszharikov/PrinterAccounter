@@ -1,21 +1,21 @@
 namespace PrinterAccounter.Exceptions
 {
-    public class DatabaseException : Exception
+    internal class DatabaseException : Exception
     {
         public DatabaseException(string message) : base(message) { }
     }
 
-    public class NotFoundException : Exception
+    internal class NotFoundException : Exception
     {
         public NotFoundException(string message) : base(message) { }
     }
 
-    public class ValidationException : Exception
+    internal class ValidationException : Exception
     {
         public ValidationException(string message) : base(message) { }
     }
 
-    public class FileValidationException : Exception
+    internal class FileValidationException : Exception
     {
         public FileValidationException(string message) : base(message) { }
     }

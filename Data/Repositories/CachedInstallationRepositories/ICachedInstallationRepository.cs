@@ -1,9 +1,9 @@
 using PrinterAccounter.DTOs.Input;
 using PrinterAccounter.Models;
 
-namespace PrinterAccounter.Data.Repositories.InstallationRepositories;
+namespace PrinterAccounter.Data.Repositories.CachedInstallationRepositories;
 
-internal interface IInstallationRepository
+internal interface ICachedInstallationRepository
 {
     Task<Installation> AddInstallationAsync(InstallationDto installation);
     Task<IEnumerable<Installation>> GetInstallationsAsync(InstallationQueryParameters parameters);

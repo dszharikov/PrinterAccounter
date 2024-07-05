@@ -5,7 +5,7 @@ using PrinterAccounter.Services;
 
 namespace PrinterAccounter.Data.Repositories.PrintTaskRepositories;
 
-public class DapperPrintTaskRepository : IPrintTaskRepository
+internal class DapperPrintTaskRepository : IPrintTaskRepository
 {
     private readonly SqlConnectionFactory _sqlConnectionFactory;
 

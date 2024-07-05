@@ -8,7 +8,7 @@ namespace PrinterAccounter.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [ProducesErrorResponseType(typeof(ErrorResponseDto))]
-public class BranchController : ControllerBase
+internal class BranchController : ControllerBase
 {
     private readonly IBranchService _branchService;
 
@@ -24,6 +24,7 @@ public class BranchController : ControllerBase
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<Branch>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetBranches()
     {
         var branches = await _branchService.GetAllBranchesAsync();

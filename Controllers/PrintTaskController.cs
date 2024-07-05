@@ -9,7 +9,7 @@ namespace PrinterAccounter.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [ProducesErrorResponseType(typeof(ErrorResponseDto))]
-public class PrintTaskController : ControllerBase
+internal class PrintTaskController : ControllerBase
 {
     private readonly IPrintTaskService _printTaskService;
     private readonly PrinterCsvParser _csvParser;
@@ -42,6 +42,7 @@ public class PrintTaskController : ControllerBase
     [ProducesResponseType(typeof(AddModelResultDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> AddPrintTask([FromBody] PrintTaskDto printTaskDto)
     {
         if (printTaskDto == null || printTaskDto.PagesCount <= 0)
@@ -79,6 +80,7 @@ public class PrintTaskController : ControllerBase
     [ProducesResponseType(typeof(ImportPrintTasksResultDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> ImportPrintTasks(IFormFile file)
     {
         if (file == null)
@@ -136,6 +138,7 @@ public class PrintTaskController : ControllerBase
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(PrintTaskDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetPrintTaskById(int id)
     {
         var printTask = await _printTaskService.GetPrintTaskByIdAsync(id);

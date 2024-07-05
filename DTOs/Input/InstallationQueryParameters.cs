@@ -1,6 +1,6 @@
 namespace PrinterAccounter.DTOs.Input;
 
-public class InstallationQueryParameters
+internal class InstallationQueryParameters
 {
     public int? BranchId { get; set; }
 }

@@ -1,6 +1,6 @@
 namespace PrinterAccounter.Models;
 
-public class Branch
+internal class Branch
 {
     public int Id { get; set; }
     public string Name { get; set; }

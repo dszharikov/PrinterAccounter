@@ -2,7 +2,7 @@ using PrinterAccounter.Models;
 
 namespace PrinterAccounter.Services.PrintServices;
 
-public class PrintSimulatorService : IPrintService
+internal class PrintSimulatorService : IPrintService
 {
     private readonly Random _random;
     public PrintSimulatorService()

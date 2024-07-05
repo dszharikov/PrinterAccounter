@@ -1,6 +1,6 @@
 namespace PrinterAccounter.Models;
 
-public class Installation
+internal class Installation
 {
     public int Id { get; set; }
     public string Name { get; set; }

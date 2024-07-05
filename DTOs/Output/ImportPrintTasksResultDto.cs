@@ -1,6 +1,6 @@
 namespace PrinterAccounter.DTOs.Output;
 
-public class ImportPrintTasksResultDto
+internal class ImportPrintTasksResultDto
 {
     public int RowsAffected { get; set; }
 }

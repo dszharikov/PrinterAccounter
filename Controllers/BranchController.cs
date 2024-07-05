@@ -8,7 +8,7 @@ namespace PrinterAccounter.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [ProducesErrorResponseType(typeof(ErrorResponseDto))]
-internal class BranchController : ControllerBase
+public class BranchController : ControllerBase
 {
     private readonly IBranchService _branchService;
 

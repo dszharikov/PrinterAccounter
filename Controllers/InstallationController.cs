@@ -8,7 +8,7 @@ namespace PrinterAccounter.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [ProducesErrorResponseType(typeof(ErrorResponseDto))]
-internal class InstallationController : ControllerBase
+public class InstallationController : ControllerBase
 {
     private readonly IInstallationService _installationService;
 

@@ -7,7 +7,7 @@ using PrinterAccounter.Services.DeviceServices;
 
 namespace PrinterAccounter.Services.InstallationServices;
 
-internal class InstallationService : IInstallationService
+public class InstallationService : IInstallationService
 {
     private readonly ICachedInstallationRepository _installationRepository;
     private readonly IBranchService _branchService;

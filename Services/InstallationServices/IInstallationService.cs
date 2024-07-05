@@ -3,7 +3,7 @@ using PrinterAccounter.Models;
 
 namespace PrinterAccounter.Services.InstallationServices;
 
-internal interface IInstallationService
+public interface IInstallationService
 {
     Task<Installation> AddInstallationAsync(InstallationDto installation);
     Task<IEnumerable<Installation>> GetInstallationsAsync(InstallationQueryParameters parameters);

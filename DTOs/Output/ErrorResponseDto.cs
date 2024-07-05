@@ -1,6 +1,6 @@
 namespace PrinterAccounter.DTOs.Output;
 
-internal class ErrorResponseDto
+public class ErrorResponseDto
 {
     public int StatusCode { get; set; }
     public string Message { get; set; }

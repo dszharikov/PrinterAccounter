@@ -7,7 +7,7 @@ using PrinterAccounter.Models;
 
 namespace PrinterAccounter.Data.Repositories.CachedInstallationRepositories;
 
-internal class CachedInstallationRepository : ICachedInstallationRepository
+public class CachedInstallationRepository : ICachedInstallationRepository
 {
     private readonly IInstallationRepository _installationRepository;
     private readonly string _keyPrefix = $"{typeof(Installation).Name}:";

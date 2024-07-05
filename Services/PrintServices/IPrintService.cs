@@ -2,7 +2,7 @@ using PrinterAccounter.Models;
 
 namespace PrinterAccounter.Services.PrintServices;
 
-internal interface IPrintService
+public interface IPrintService
 {
     Task<bool> PrintJobAsync(PrintTask printTask);
 }

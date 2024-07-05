@@ -2,7 +2,7 @@ using Microsoft.Data.SqlClient;
 
 namespace PrinterAccounter.Services;
 
-internal class SqlConnectionFactory
+public class SqlConnectionFactory
 {
     private readonly string _connectionString;
 

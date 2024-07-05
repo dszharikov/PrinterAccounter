@@ -8,7 +8,7 @@ using PrinterAccounter.Services.PrintServices;
 
 namespace PrinterAccounter.Services.PrintTaskServices;
 
-internal class PrintTaskService : IPrintTaskService
+public class PrintTaskService : IPrintTaskService
 {
     private readonly IPrintTaskRepository _printTaskRepository;
     private readonly IEmployeeService _employeeService;

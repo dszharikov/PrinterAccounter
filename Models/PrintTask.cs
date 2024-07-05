@@ -1,6 +1,6 @@
 namespace PrinterAccounter.Models;
 
-internal class PrintTask
+public class PrintTask
 {
     public int Id { get; set; }
     public string Name { get; set; }

@@ -2,7 +2,7 @@ using PrinterAccounter.Models;
 
 namespace PrinterAccounter.Services.BranchServices;
 
-internal interface IBranchService
+public interface IBranchService
 {
     Task<IEnumerable<Branch>> GetAllBranchesAsync();
     Task<bool> ExistsAsync(int branchId);

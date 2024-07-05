@@ -2,7 +2,7 @@ using PrinterAccounter.Models;
 
 namespace PrinterAccounter.Data.Repositories.PrintTaskRepositories;
 
-internal interface IPrintTaskRepository
+public interface IPrintTaskRepository
 {
     Task<PrintTask> AddPrintTaskAsync(PrintTask printTask);    
     Task<PrintTask> GetPrintTaskByIdAsync(int printTaskId);

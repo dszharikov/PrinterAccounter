@@ -3,7 +3,7 @@ using PrinterAccounter.Models;
 
 namespace PrinterAccounter.Services.DeviceServices;
 
-internal class DeviceService : IDeviceService
+public class DeviceService : IDeviceService
 {
     private readonly IDeviceRepository _deviceRepository;
 

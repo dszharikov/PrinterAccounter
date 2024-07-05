@@ -6,7 +6,7 @@ using PrinterAccounter.Services;
 
 namespace PrinterAccounter.Data.Repositories.BranchRepositories;
 
-internal class DapperBranchRepository : IBranchRepository
+public class DapperBranchRepository : IBranchRepository
 {
     private readonly SqlConnectionFactory _sqlConnectionFactory;
 

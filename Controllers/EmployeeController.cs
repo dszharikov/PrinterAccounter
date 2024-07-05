@@ -8,7 +8,7 @@ namespace PrinterAccounter.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [ProducesErrorResponseType(typeof(ErrorResponseDto))]
-internal class EmployeeController : ControllerBase
+public class EmployeeController : ControllerBase
 {
     private readonly IEmployeeService _employeeService;
 

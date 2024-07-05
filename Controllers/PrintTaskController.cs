@@ -9,7 +9,7 @@ namespace PrinterAccounter.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [ProducesErrorResponseType(typeof(ErrorResponseDto))]
-internal class PrintTaskController : ControllerBase
+public class PrintTaskController : ControllerBase
 {
     private readonly IPrintTaskService _printTaskService;
     private readonly PrinterCsvParser _csvParser;

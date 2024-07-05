@@ -1,6 +1,6 @@
 namespace PrinterAccounter.DTOs.Input;
 
-internal class PrintTaskDto
+public class PrintTaskDto
 {
     public string Name { get; set; }
     public int EmployeeId { get; set; }

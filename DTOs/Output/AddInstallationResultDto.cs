@@ -1,6 +1,6 @@
 namespace PrinterAccounter.DTOs.Output;
 
-internal class AddModelResultDto
+public class AddModelResultDto
 {
     public int Id { get; set; }
 }

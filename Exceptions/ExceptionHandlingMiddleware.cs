@@ -4,7 +4,7 @@ using PrinterAccounter.Exceptions;
 using System.Net;
 using System.Text.Json;
 
-internal class ExceptionHandlingMiddleware
+public class ExceptionHandlingMiddleware
 {
     private readonly RequestDelegate _next;
 
